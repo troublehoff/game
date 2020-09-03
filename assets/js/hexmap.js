@@ -10,14 +10,12 @@ export default class Hexmap {
         this.Hex = Honeycomb.extendHex({ size: 5 })
         const Grid = Honeycomb.defineGrid(this.Hex)
         this.grid = Grid.rectangle({ width:  this.width, height: this.height });
-        this.hexMaterial = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+        this.hexMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
     }
 
     buildHexGeometry() {
 
         var shape = new THREE.Shape();
-
-        const [a, b, ...rest] = [10, 20, 30, 40, 50];
 
         // separate the first from the other corners
         const [firstCorner, ...otherCorners] = this.Hex().corners();
@@ -37,6 +35,8 @@ export default class Hexmap {
         };
 
         this.geometry = new THREE.ExtrudeBufferGeometry( shape, extrudeSettings );
+        this.geometry.rotateX(Math.PI / 2);
+        this.geometry.scale(0.8, 1, 0.8);
     }
 
     /**
@@ -49,7 +49,9 @@ export default class Hexmap {
 
             var mesh = new THREE.Mesh( this.geometry, this.hexMaterial ) ;
 
-            mesh.setPosition(point.x, 0, point.y);
+            mesh.position.x = point.x;
+            mesh.position.z = point.y;
+
             scene.add( mesh );
         });
     }

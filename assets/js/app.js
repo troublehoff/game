@@ -13,6 +13,7 @@ import * as THREE from 'three';
 import * as Honeycomb from 'honeycomb-grid';
 import Hexmap from './hexmap';
 import $ from 'jquery';
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 
 
 // Create an empty scene
@@ -20,11 +21,14 @@ var scene = new THREE.Scene();
 
 // Create a basic perspective camera
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-camera.position.z = 4;
+camera.position.set(4,4,4);
 
 // Create a renderer with Antialiasing
 var renderer = new THREE.WebGLRenderer({antialias:true});
 var viewport = document.getElementById('viewport');
+
+var controls = new OrbitControls( camera, viewport );
+controls.update();
 
 // Configure renderer clear color
 renderer.setClearColor("#000000");
@@ -45,27 +49,34 @@ var material = new THREE.MeshLambertMaterial( { color: "#433F81" } );
 var cube = new THREE.Mesh( geometry, material );
 
 // Add cube to Scene
-scene.add( cube );
+// scene.add( cube );
 
 var light = new THREE.PointLight(0xff5050);
-light.position.set(0, 5, 10);
-light.intensity = 2;
+light.position.set(20, 5, 30);
+light.intensity = 3;
 scene.add(light);
 
 var ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
-const hexmap = new Hexmap(10, 10);
+var axesHelper = new THREE.AxesHelper( 5000 );
+scene.add( axesHelper );
+
+const hexmap = new Hexmap(2, 3);
 hexmap.buildHexGeometry();
-// hexmap.buildMeshes(scene);
+hexmap.buildMeshes(scene);
 
 
 // Render Loop
 var render = function () {
     requestAnimationFrame( render );
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    // cube.rotation.x += 0.01;
+    // cube.rotation.y += 0.01;
+
+    console.log(camera.position);
+
+    controls.update();
 
     // Render the scene
     renderer.render(scene, camera);

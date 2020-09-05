@@ -33,7 +33,11 @@ class TestGridCommand extends Command
 
         $grid = new Grid();
 
-        $grid->
+        $tileCoords = $grid->hexagon(0,0, 2, true);
+
+        dump($tileCoords);
+
+        dump($grid->neighbors(3, -3));
 
 
 

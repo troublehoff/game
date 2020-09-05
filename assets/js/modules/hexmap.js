@@ -9,7 +9,7 @@ export default class Hexmap {
         this.geometry = null;
         this.Hex = Honeycomb.extendHex({ size: 5 })
         const Grid = Honeycomb.defineGrid(this.Hex)
-        this.grid = Grid.rectangle({ width:  this.width, height: this.height });
+        this.grid = Grid.hexagon({ radius: 2 });
         this.hexMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
     }
 
@@ -44,7 +44,14 @@ export default class Hexmap {
      */
     buildMeshes(scene) {
 
+        console.log('building meshes...');
+
         this.grid.forEach(hex => {
+
+            // cube coordinate system - used on the server
+            console.log(hex.cube());
+
+
             const point = hex.toPoint();
 
             var mesh = new THREE.Mesh( this.geometry, this.hexMaterial ) ;

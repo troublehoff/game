@@ -74,7 +74,7 @@ var render = function () {
     // cube.rotation.x += 0.01;
     // cube.rotation.y += 0.01;
 
-    console.log(camera.position);
+    // console.log(camera.position);
 
     controls.update();
 

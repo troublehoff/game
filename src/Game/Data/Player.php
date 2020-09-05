@@ -12,9 +12,9 @@ class Player
     private $id;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $guid;
+    private $number;
 
     /**
      * @var string
@@ -22,42 +22,54 @@ class Player
     private $username;
 
     /**
+     * @var integer
+     */
+    private $credits;
+
+    /**
      * Player constructor.
      * @param int $id
-     * @param string $guid
+     * @param int $number
      * @param string $username
+     * @param int $credits
      */
-    public function __construct($id, $guid, $username)
+    public function __construct(int $id, int $number, string $username, int $credits)
     {
         $this->id = $id;
-        $this->guid = $guid;
+        $this->number = $number;
         $this->username = $username;
+        $this->credits = $credits;
     }
 
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getGuid()
+    public function getNumber(): int
     {
-        return $this->guid;
+        return $this->number;
     }
 
     /**
      * @return string
      */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-
-
+    /**
+     * @return int
+     */
+    public function getCredits(): int
+    {
+        return $this->credits;
+    }
 }

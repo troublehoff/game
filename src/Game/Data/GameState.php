@@ -15,11 +15,6 @@ class GameState
     /**
      * @var string
      */
-    private $guid;
-
-    /**
-     * @var string
-     */
     private $name;
 
     /**
@@ -28,16 +23,36 @@ class GameState
     private $players;
 
     /**
-     * @var
+     * @var Map
      */
     private $map;
 
     /**
-     * @var
+     * @var array<Unit>
      */
     private $units;
 
+    /**
+     * @var Turn
+     */
     private $turn;
 
-
+    /**
+     * GameState constructor.
+     * @param int $id
+     * @param string $name
+     * @param array $players
+     * @param Map $map
+     * @param array $units
+     * @param Turn $turn
+     */
+    public function __construct(int $id, string $name, array $players, Map $map, array $units, Turn $turn)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->players = $players;
+        $this->map = $map;
+        $this->units = $units;
+        $this->turn = $turn;
+    }
 }

@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "977370ccbb8cfcbae30be9be323168c9",
+    "content-hash": "69f52cb82c292862db6f42df109c0d3b",
     "packages": [
+        {
+            "name": "astatroth/php-hexgrid",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Astatroth/php-hexgrid.git",
+                "reference": "79c37245eef998ae5981fbebfaf6b58b1778abc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Astatroth/php-hexgrid/zipball/79c37245eef998ae5981fbebfaf6b58b1778abc6",
+                "reference": "79c37245eef998ae5981fbebfaf6b58b1778abc6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Astatroth\\HexGrid\\": "/src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Astatroth",
+                    "email": "astatroth@gmail.com"
+                },
+                {
+                    "name": "Robert Brewitz Borg",
+                    "email": "hello@robertbrewitz.com"
+                }
+            ],
+            "description": "Axial hexagonal grid generator for PHP",
+            "time": "2019-06-21T10:51:12+00:00"
+        },
         {
             "name": "composer/package-versions-deprecated",
             "version": "1.11.99",

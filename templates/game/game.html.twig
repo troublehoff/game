@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Games Index{% endblock %}
+{% block title %}Game{% endblock %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('game') }}
 {% endblock %}
 
 {% block body %}
@@ -26,10 +26,6 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
-{#                <form class="form-inline mt-2 mt-md-0">#}
-{#                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">#}
-{#                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
-{#                </form>#}
             </div>
         </nav>
     </header>
@@ -41,8 +37,4 @@
             <span class="text-muted">Steve Lewis - 2020</span>
         </div>
     </footer>
-
-
-
-
 {% endblock %}

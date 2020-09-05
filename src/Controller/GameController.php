@@ -12,8 +12,15 @@ class GameController extends AbstractController
      */
     public function index()
     {
-        return $this->render('game/index.html.twig', [
-            'controller_name' => 'GameController',
-        ]);
+        return $this->render('game/index.html.twig', []);
     }
+
+    /**
+     * @Route("/game", name="game")
+     */
+    public function game()
+    {
+        return $this->render('game/game.html.twig', []);
+    }
+
 }

@@ -12,6 +12,7 @@
     <!-- Modal -->
     <div class="modal fade" id="newGameModal" tabindex="-1" role="dialog" aria-labelledby="newGameModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
+            {{ form_start(form) }}
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="newGameModalLabel">Create a New Game..</h5>
@@ -20,13 +21,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.passwordProtected) }}
+                    <div id="password-container" style="display: none;">
+                        {{ form_row(form.password) }}
+                    </div>
+                    {{ form_row(form.playerOneName) }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </div>
             </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

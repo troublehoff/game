@@ -14,6 +14,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './vue/App';
 import moment from 'moment'
+import createGameForm from "./modules/create-game-form";
 Vue.use(Vuex)
 
 Vue.filter('formatDate', function(value) {
@@ -55,3 +56,5 @@ new Vue({
 })
 
 updateGames();
+
+createGameForm();

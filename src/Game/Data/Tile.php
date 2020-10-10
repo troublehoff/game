@@ -4,7 +4,7 @@
 namespace App\Game\Data;
 
 
-class Tile
+class Tile implements \JsonSerializable
 {
     const TYPE_WATER     = 'water';
     const TYPE_GRASSLAND = 'grassland';
@@ -15,17 +15,17 @@ class Tile
     /**
      * @var int
      */
-    private $q;
+    private int $q;
 
     /**
      * @var int
      */
-    private $r;
+    private int $r;
 
     /**
      * @var string
      */
-    private $type;
+    private string $type;
 
     /**
      * Tile constructor.
@@ -64,5 +64,12 @@ class Tile
         return $this->type;
     }
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'q' => $this->q,
+            'r' => $this->r,
+            'type' => $this->type
+        ];
+    }
 }

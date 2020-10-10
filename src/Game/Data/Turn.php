@@ -9,12 +9,12 @@ class Turn
     /**
      * @var integer
      */
-    private $turnNumber;
+    private int $turnNumber;
 
     /**
      * @var integer
      */
-    private $playerNumber;
+    private int $playerNumber;
 
     /**
      * Turn constructor.

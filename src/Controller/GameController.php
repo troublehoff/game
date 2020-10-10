@@ -7,11 +7,13 @@ use App\Entity\Player;
 use App\Form\NewGameFormType;
 use App\Game\Data\NewGame;
 use App\Game\GameService;
+use App\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class GameController extends AbstractController
 {
@@ -45,16 +47,18 @@ class GameController extends AbstractController
     /**
      * @Route("/game/list", name="game_list")
      */
-    public function gameList()
+    public function gameList(GameRepository $gameRepository, SerializerInterface $serializer)
     {
-        $gameRepo = $this->getDoctrine()->getRepository(Game::class);
+        $activeGames = $gameRepository->findBy(
+            ['active' => true],
+            ['created' => 'DESC']
+        );
 
-
-
-        return new JsonResponse([
-            ['name' => 'server game', 'created' => new \DateTime('now')]
-        ]);
-
+        return new JsonResponse(
+            $serializer->serialize($activeGames, 'json',  ['groups' => 'games_list']),
+            200,
+            [],
+            true);
     }
 
     /**

@@ -18,9 +18,15 @@ import createGameForm from "./modules/create-game-form";
 Vue.use(Vuex)
 
 Vue.filter('formatDate', function(value) {
-    if (value) {
-        return moment(String(value)).format('DD/MM/YYYY HH:mm')
+
+    if(value !== null)
+    {
+        const val = moment(value.toISOString()).format('DD/MM/YYYY HH:mm');
+        return val;
     }
+
+    return '?';
+
 });
 
 const store = new Vuex.Store({
@@ -29,7 +35,7 @@ const store = new Vuex.Store({
         games: [
             {
                 name: "Ste's Game..",
-                created: new Date('2020-01-01T12:12:54')
+                created: null
             }
         ]
     },

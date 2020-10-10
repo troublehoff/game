@@ -4,27 +4,27 @@
 namespace App\Game\Data;
 
 
-class Player
+class Player implements \JsonSerializable
 {
     /**
      * @var integer
      */
-    private $id;
+    private int $id;
 
     /**
      * @var integer
      */
-    private $number;
+    private int $number;
 
     /**
      * @var string
      */
-    private $username;
+    private string $username;
 
     /**
      * @var integer
      */
-    private $credits;
+    private int $credits;
 
     /**
      * Player constructor.
@@ -71,5 +71,30 @@ class Player
     public function getCredits(): int
     {
         return $this->credits;
+    }
+
+    /**
+     * @param \App\Entity\Player $playerEntity
+     * @param int $credits
+     * @return Player
+     */
+    public static function fromPlayerEntity(\App\Entity\Player $playerEntity, int $credits)
+    {
+        return new Player(
+            $playerEntity->getId(),
+            $playerEntity->getId(),
+            $playerEntity->getUsername(),
+            $credits
+        );
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'number' => $this->number,
+            'username' => $this->username,
+            'credits' => $this->credits
+        ];
     }
 }

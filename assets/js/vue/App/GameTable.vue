@@ -13,7 +13,7 @@
     <tbody>
       <tr v-for="game in games">
         <td>{{ game.name }}</td>
-        <td>{{  game.created.date | formatDate }}</td>
+        <td>{{  game.created | formatDate }}</td>
         <td>-</td>
         <td>-</td>
         <td><button class="btn btn-primary btn-sm">Join</button></td>

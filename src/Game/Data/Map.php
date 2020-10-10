@@ -6,18 +6,18 @@ namespace App\Game\Data;
 
 use Astatroth\HexGrid\Grid;
 
-class Map
+class Map implements \JsonSerializable
 {
     /**
      * @var integer
      */
-    private $radius;
+    private int $radius;
 
     /**
      * Tile[q][r]
      * @var array<int,array<int, Tile>>
      */
-    private $tiles;
+    private array $tiles;
 
     /**
      * Map constructor.
@@ -46,4 +46,30 @@ class Map
 
         return new Map($radius, $tiles);
     }
+
+    /**
+     * @return int
+     */
+    public function getRadius(): int
+    {
+        return $this->radius;
+    }
+
+    /**
+     * @return array<int,array<int, Tile>>
+     */
+    public function getTiles(): array
+    {
+        return $this->tiles;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'radius' => $this->radius,
+            'tiles' => $this->tiles
+        ];
+    }
+
+
 }

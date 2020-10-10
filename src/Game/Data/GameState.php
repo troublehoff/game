@@ -4,44 +4,43 @@
 namespace App\Game\Data;
 
 
-class GameState
+class GameState implements \JsonSerializable
 {
-
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
-     * @var array<int,App\Game\Data\Player>
+     * @var array<int,Player>
      */
-    private $players;
+    private array $players;
 
     /**
      * @var Map
      */
-    private $map;
+    private Map $map;
 
     /**
-     * @var array<Unit>
+     * @var array<int,Unit>
      */
-    private $units;
+    private array $units;
 
     /**
      * @var Turn
      */
-    private $turn;
+    private Turn $turn;
 
     /**
      * GameState constructor.
      * @param int $id
      * @param string $name
-     * @param array $players
+     * @param array<int,Player> $players
      * @param Map $map
      * @param array $units
      * @param Turn $turn
@@ -54,5 +53,64 @@ class GameState
         $this->map = $map;
         $this->units = $units;
         $this->turn = $turn;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPlayers(): array
+    {
+        return $this->players;
+    }
+
+    /**
+     * @return Map
+     */
+    public function getMap(): Map
+    {
+        return $this->map;
+    }
+
+    /**
+     * @return array
+     */
+    public function getUnits(): array
+    {
+        return $this->units;
+    }
+
+    /**
+     * @return Turn
+     */
+    public function getTurn(): Turn
+    {
+        return $this->turn;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'players' => $this->players,
+            'units' => $this->units,
+            'turn' => $this->turn
+        ];
     }
 }

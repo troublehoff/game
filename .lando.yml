@@ -2,6 +2,7 @@ name: game
 recipe: lamp
 config:
   webroot: public
+  php: 7.4
 
 services:
   node:

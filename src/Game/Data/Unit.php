@@ -4,7 +4,7 @@
 namespace App\Game\Data;
 
 
-class Unit
+class Unit implements \JsonSerializable
 {
     const TYPE_TANK = 'tank';
     const TYPE_HELI = 'heli';
@@ -12,36 +12,52 @@ class Unit
     /**
      * @var int
      */
-    private $q;
+    private int $id;
 
     /**
      * @var int
      */
-    private $r;
+    private int $q;
+
+    /**
+     * @var int
+     */
+    private int $r;
 
     /**
      * @var string
      */
-    private $type;
+    private string $type;
 
     /**
      * @var int
      */
-    private $playerNumber;
+    private int $playerNumber;
 
     /**
      * Unit constructor.
+     * @param int $id
      * @param int $q
      * @param int $r
      * @param string $type
      * @param int $playerNumber
      */
-    public function __construct(int $q, int $r, string $type, int $playerNumber)
+    public function __construct(int $id, int $q, int $r, string $type, int $playerNumber)
     {
+        $this->id = $id;
         $this->q = $q;
         $this->r = $r;
         $this->type = $type;
         $this->playerNumber = $playerNumber;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**
@@ -76,7 +92,36 @@ class Unit
         return $this->playerNumber;
     }
 
+    /**
+     * @param int $id
+     * @param int $q
+     * @param int $r
+     * @param string $type
+     * @param int $playerNumber
+     * @return Unit
+     */
+    public static function create(int $id, int $q, int $r, string $type, int $playerNumber)
+    {
+        return new Unit($id, $q, $r, $type, $playerNumber);
+    }
 
+    /**
+     * @param array $units
+     * @return int
+     */
+    public static function getNextId(array $units): int
+    {
+        return count($units) + 1;
+    }
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'q' => $this->q,
+            'r' => $this->r,
+            'type' => $this->type,
+            'playerNumber' => $this->playerNumber
+        ];
+    }
 }

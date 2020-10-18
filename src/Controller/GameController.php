@@ -17,6 +17,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class GameController extends AbstractController
 {
+    // make a change
     /**
      * @Route("/", name="index")
      */

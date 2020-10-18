@@ -34,6 +34,8 @@ class GameStateFactory
 
         $units = [];
 
+        dump($map);
+
         foreach ($players as $playerNum => $player)
         {
             // initial tank

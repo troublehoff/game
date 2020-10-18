@@ -14,8 +14,8 @@
       <tr v-for="game in games">
         <td>{{ game.name }}</td>
         <td>{{  game.created | formatDate }}</td>
-        <td>-</td>
-        <td>-</td>
+        <td>{{ game.status }}</td>
+        <td>{{ game.pa}}</td>
         <td><button class="btn btn-primary btn-sm">Join</button></td>
       </tr>
     </tbody>

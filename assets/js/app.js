@@ -21,7 +21,7 @@ Vue.filter('formatDate', function(value) {
 
     if(value !== null)
     {
-        const val = moment(value.toISOString()).format('DD/MM/YYYY HH:mm');
+        const val = moment(value).format('DD/MM/YYYY HH:mm');
         return val;
     }
 

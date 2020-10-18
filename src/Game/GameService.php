@@ -15,16 +15,24 @@ class GameService
     /**
      * @var EntityManagerInterface
      */
-    private $em;
+    private EntityManagerInterface $em;
+
+    /**
+     * @var GameStateFactory
+     */
+    private GameStateFactory $gameStateFactory;
 
     /**
      * GameService constructor.
      * @param EntityManagerInterface $em
+     * @param GameStateFactory $gameStateFactory
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, GameStateFactory $gameStateFactory)
     {
         $this->em = $em;
+        $this->gameStateFactory = $gameStateFactory;
     }
+
 
     /**
      * create a game record, and player one in a single operation
